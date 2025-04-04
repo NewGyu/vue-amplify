@@ -1,12 +1,18 @@
 version: 1
-frontend:
-  phases:
-    build:
-      commands:
-        - npm run build
-  artifacts:
-    baseDirectory: my-project/
-    files:
-      - "**/*"
-  cache:
-    paths: []
+applications:
+  - appRoot: my-project
+    frontend:
+      phases:
+        preBuild:
+          commands:
+            - npm install
+        build:
+          commands:
+            - npm run build
+      artifacts:
+        baseDirectory: .nuxt
+        files:
+          - "**/*"
+      cache:
+        paths:
+          - node_modules/**/*
